@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 public abstract class UnsafeAllocator {
-	public static UnsafeAllocator instance;
+	private static UnsafeAllocator instance;
 
 	static {
 		instance = create();
