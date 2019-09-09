@@ -13,8 +13,8 @@ public abstract class UnsafeAllocator {
 		instance = create();
 	}
 	
-	public static UnsafeAllocator getInstance() {
-		return instance;
+	public static <T> T newInstance(Class<T> c) throws Exception {
+		return instance.allocate(c);
 	}
 	
 	private static UnsafeAllocator create() {
@@ -27,7 +27,7 @@ public abstract class UnsafeAllocator {
 			return new UnsafeAllocator() {
 				@Override
 				@SuppressWarnings("unchecked")
-				public <T> T newInstance(Class<T> c) throws Exception {
+				public <T> T allocate(Class<T> c) throws Exception {
 					assertInstantiable(c);
 					return (T) allocateInstance.invoke(unsafe, c);
 				}
@@ -44,7 +44,7 @@ public abstract class UnsafeAllocator {
 			return new UnsafeAllocator() {
 				@Override
 				@SuppressWarnings("unchecked")
-				public <T> T newInstance(Class<T> c) throws Exception {
+				public <T> T allocate(Class<T> c) throws Exception {
 					assertInstantiable(c);
 					return (T) newInstance.invoke(null, c, constructorId);
 				}
@@ -59,7 +59,7 @@ public abstract class UnsafeAllocator {
 			return new UnsafeAllocator() {
 				@Override
 				@SuppressWarnings("unchecked")
-				public <T> T newInstance(Class<T> c) throws Exception {
+				public <T> T allocate(Class<T> c) throws Exception {
 					assertInstantiable(c);
 					return (T) newInstance.invoke(null, c, Object.class);
 				}
@@ -69,7 +69,7 @@ public abstract class UnsafeAllocator {
 
 		return new UnsafeAllocator() {
 			@Override
-			public <T> T newInstance(Class<T> c) {
+			public <T> T allocate(Class<T> c) {
 				throw new UnsupportedOperationException("Cannot allocate " + c);
 			}
 		};
@@ -85,5 +85,5 @@ public abstract class UnsafeAllocator {
 		}
 	}
 	
-	public abstract <T> T newInstance(Class<T> c) throws Exception;
+	public abstract <T> T allocate(Class<T> c) throws Exception;
 }
