@@ -185,19 +185,10 @@ public class DependencyFinder {
 
 		recursiveSearch(clazz, classDynamicLoader, resultClasses);
 
-		Class<?>[] resultClassArray = resultClasses.toArray(new Class[resultClasses.size()]);
-
-		for (Class<?> resultClass : resultClassArray) {
-			recursiveSort(resultClass, resultClass, resultClasses);
-		}
-
 		for (Class<?> dependencyClass : resultClasses) {
 			ClassFile[] classFiles = ClassFileReader.getClassBytes(dependencyClass);
 			for (ClassFile classFile : classFiles) {
-				try {
-					classDynamicLoader.loadClassByBytes(classFile.getBytes(), classFile.getName());
-				} catch (Exception e) {
-				}
+				classDynamicLoader.addClassFile(classFile);
 			}
 		}
 
