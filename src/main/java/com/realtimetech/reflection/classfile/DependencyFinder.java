@@ -153,32 +153,6 @@ public class DependencyFinder {
 		resultClasses.add(clazz);
 	}
 
-	private static void recursiveSort(Class<?> pivot, Class<?> clazz, List<Class<?>> resultClasses) throws IOException {
-		switchTwoClass(pivot, clazz.getSuperclass(), resultClasses);
-
-		for (Class<?> interfaceClass : clazz.getInterfaces()) {
-			switchTwoClass(pivot, interfaceClass, resultClasses);
-		}
-
-		for (Class<?> declaredClass : clazz.getDeclaredClasses()) {
-			switchTwoClass(pivot, declaredClass, resultClasses);
-		}
-	}
-
-	private static void switchTwoClass(Class<?> oneClass, Class<?> twoClass, List<Class<?>> resultClasses) {
-		int oneClassIndexOf = resultClasses.indexOf(oneClass);
-		int twoClassIndexOf = resultClasses.indexOf(twoClass);
-
-		if (oneClassIndexOf != -1 && twoClassIndexOf != -1) {
-			if (oneClassIndexOf < twoClassIndexOf) {
-				resultClasses.remove(oneClass);
-				resultClasses.add(twoClassIndexOf, oneClass);
-				resultClasses.remove(twoClass);
-				resultClasses.add(oneClassIndexOf, twoClass);
-			}
-		}
-	}
-
 	public static Class<?>[] getAllDependenciesClass(Class<?> clazz) throws IOException {
 		ClassDynamicLoader classDynamicLoader = new ClassDynamicLoader();
 		List<Class<?>> resultClasses = new LinkedList<Class<?>>();
