@@ -2,7 +2,7 @@ package com.realtimetech.reflection.classloader;
 
 import java.util.HashMap;
 
-import com.realtimetech.reflection.classfile.classfile.ClassFile;
+import com.realtimetech.reflection.classfile.file.ClassFile;
 
 public class ClassDynamicLoader extends ClassLoader {
 	private HashMap<String, byte[]> classMap;
@@ -17,6 +17,10 @@ public class ClassDynamicLoader extends ClassLoader {
 	}
 
 	public void addClass(String className, byte[] bytes) {
+		this.classMap.put(className, bytes);
+	}
+
+	public void addClassFile(String className, byte[] bytes) {
 		this.classMap.put(className, bytes);
 	}
 
