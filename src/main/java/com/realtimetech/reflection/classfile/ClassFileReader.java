@@ -15,9 +15,9 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
 
-import com.realtimetech.reflection.classfile.classfile.ClassFile;
-import com.realtimetech.reflection.classfile.classfile.ClassFileStream;
-import com.realtimetech.reflection.classfile.classfile.ClassFileStreamSet;
+import com.realtimetech.reflection.classfile.file.ClassFile;
+import com.realtimetech.reflection.classfile.file.ClassFileStream;
+import com.realtimetech.reflection.classfile.file.ClassFileStreamSet;
 
 public class ClassFileReader {
 	public enum ClassType {
