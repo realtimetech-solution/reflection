@@ -14,7 +14,7 @@ import org.objectweb.asm.tree.FrameNode;
 import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
 
-import com.realtimetech.reflection.classfile.classfile.ClassFile;
+import com.realtimetech.reflection.classfile.file.ClassFile;
 import com.realtimetech.reflection.classloader.ClassDynamicLoader;
 
 public class DependencyFinder {

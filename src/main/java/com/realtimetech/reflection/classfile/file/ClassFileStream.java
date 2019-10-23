@@ -1,4 +1,4 @@
-package com.realtimetech.reflection.classfile.classfile;
+package com.realtimetech.reflection.classfile.file;
 
 import java.io.InputStream;
 
