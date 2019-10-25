@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
-public class JDKFinder {
+public class JdkFinder {
 	public static File getDirectory(String version) {
 		String operatingSystem = System.getProperty("os.name").toLowerCase();
 
