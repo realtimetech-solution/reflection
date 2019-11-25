@@ -25,22 +25,24 @@ public class ClassFinder {
 		return getClassInPackages(packageInClass.getPackageName());
 	}
 
-	public static Class<?>[] getClassInPackages(String packageName) throws IOException {
-		String path = packageName.replace('.', '/');
-		Enumeration<URL> resources = ClassFinder.class.getClassLoader().getResources(path);
-		List<File> directories = new LinkedList<File>();
-
-		while (resources.hasMoreElements()) {
-			URL resource = resources.nextElement();
-			directories.add(new File(resource.getFile()));
-		}
-
+	public static Class<?>[] getClassInPackages(String... packageNames) throws IOException {
 		LinkedList<Class<?>> resultClasses = new LinkedList<Class<?>>();
 
-		for (File directory : directories) {
-			try {
-				recursiveSearch(directory, packageName, resultClasses);
-			} catch (ClassNotFoundException e) {
+		for(String packageName : packageNames) {
+			String path = packageName.replace('.', '/');
+			Enumeration<URL> resources = ClassFinder.class.getClassLoader().getResources(path);
+			List<File> directories = new LinkedList<File>();
+
+			while (resources.hasMoreElements()) {
+				URL resource = resources.nextElement();
+				directories.add(new File(resource.getFile()));
+			}
+
+			for (File directory : directories) {
+				try {
+					recursiveSearch(directory, packageName, resultClasses);
+				} catch (ClassNotFoundException e) {
+				}
 			}
 		}
 
