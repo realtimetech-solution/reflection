@@ -30,7 +30,8 @@ public class ClassFinder {
 
 		for(String packageName : packageNames) {
 			String path = packageName.replace('.', '/');
-			Enumeration<URL> resources = ClassFinder.class.getClassLoader().getResources(path);
+			
+			Enumeration<URL> resources = Thread.currentThread().getContextClassLoader().getResources(path);
 			List<File> directories = new LinkedList<File>();
 
 			while (resources.hasMoreElements()) {
