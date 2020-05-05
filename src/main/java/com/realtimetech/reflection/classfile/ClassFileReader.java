@@ -23,7 +23,7 @@ public class ClassFileReader {
 	public enum ClassType {
 		JAR, FOLDER
 	}
-
+	
 	private static ClassType getClassType(Class<?> clazz) {
 		String rootFolderPath = getClassRootPath(clazz);
 		if (rootFolderPath != null) {
