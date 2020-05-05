@@ -47,7 +47,7 @@ public class ClassFinder {
 					try (final Stream<Path> allPaths = Files.walk(root)) {
 						allPaths.filter(Files::isRegularFile).forEach(file -> {
 							try {
-								final String path = file.toString().replace('/', '.');
+								final String path = file.toString().replace('/', '.').replace('\\', '.');
 								final String name = path.substring(path.indexOf(packageName), path.length() - extension.length());
 								resultClasses.add(Class.forName(name));
 							} catch (final ClassNotFoundException | StringIndexOutOfBoundsException ignored) {
